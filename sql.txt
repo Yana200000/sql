@@ -1,0 +1,25 @@
+create table performer (
+    id serial primary key,
+    nickname varchar(40) not null,
+    sex boolean
+);
+
+create table genre (
+    id serial primary key,
+    name varchar(40) not null unique,
+    performer_id integer references performer(id)
+);
+
+create table album (
+    id serial primary key,
+    name varchar(40) not null,
+    year_launch integer not null,
+    performer_id integer references performer(id)
+);
+
+create table track (
+    id serial primary key,
+    track_name varchar(40) not null,
+    track_length integer check(track_length > 0),
+    album_id integer references album(id)
+);
