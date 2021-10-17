@@ -23,3 +23,9 @@ create table track (
     track_length integer check(track_length > 0),
     album_id integer references album(id)
 );
+
+alter table genre
+    drop column performer_id;
+    
+alter table performer
+    add column genre_id integer references genre(id);
